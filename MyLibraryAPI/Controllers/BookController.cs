@@ -18,7 +18,7 @@ namespace MyLibraryAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllBookAsync()
+        public async Task<IActionResult> GetAllBooksAsync()
         {
             var books = await _context.Books
                 .Include(b => b.Publishers)
@@ -43,7 +43,8 @@ namespace MyLibraryAPI.Controllers
                 Title = newBook.Title,
                 Description = newBook.Description,
                 PageNumber = newBook.PageNumber,
-                // author name surname publisher name ?
+                PublisherId = newBook.PublisherId,
+                AuthorId = newBook.AuthorId,
             };
             await _context.Books.AddAsync(book);
             await _context.SaveChangesAsync();
