@@ -33,6 +33,16 @@ namespace MyLibraryAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(author);
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateOneAuthorAsync(int id, AuthorCreate authorCreate)
+        {
+            var author = await _context.Authors.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            author.Name = authorCreate.Name;
+            author.Surname = authorCreate.Surname;
+            _context.Authors.Update(author);
+            await _context.SaveChangesAsync();
+            return Ok(author);
+        }
         [HttpDelete]
         public async Task<IActionResult> DeleteOneAuthorAsync(int id)
         {

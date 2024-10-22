@@ -34,6 +34,15 @@ namespace MyLibraryAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(publisher);
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateOnePublisherAsync(int id, PublisherCreate publisherCreate)
+        {
+            var publisher = await _context.Publishers.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            publisher.Name = publisherCreate.Name;
+            _context.Publishers.Update(publisher);
+            await _context.SaveChangesAsync();
+            return Ok(publisher);
+        }
         [HttpDelete]
         public async Task<IActionResult> DeleteOnePublisherAsync(int id)
         {

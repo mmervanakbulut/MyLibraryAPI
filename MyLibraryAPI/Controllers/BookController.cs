@@ -51,6 +51,20 @@ namespace MyLibraryAPI.Controllers
             return Ok(book);
 
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdateOneBookAsync(int id, BookCreate bookCreate)
+        {
+            var book = await _context.Books.FirstOrDefaultAsync(x => x.Id.Equals(id));
+            book.Title = bookCreate.Title;
+            book.Description = bookCreate.Description;
+            book.PageNumber = bookCreate.PageNumber;
+            book.PublisherId = bookCreate.PublisherId;
+            book.AuthorId = bookCreate.AuthorId;
+            _context.Books.Update(book);
+            await _context.SaveChangesAsync();
+            return Ok(book);
+        }
+
         [HttpDelete]
         public async Task<IActionResult> DeleteOneBookAsync(int id)
         {
