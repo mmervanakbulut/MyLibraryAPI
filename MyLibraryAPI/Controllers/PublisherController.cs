@@ -34,5 +34,13 @@ namespace MyLibraryAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(publisher);
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOnePublisherAsync(int id)
+        {
+            var publisher = await _context.Publishers.Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+            _context.Publishers.Remove(publisher);
+            await _context.SaveChangesAsync();
+            return Ok(publisher);
+        }
     }
 }

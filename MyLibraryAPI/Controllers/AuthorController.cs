@@ -33,13 +33,14 @@ namespace MyLibraryAPI.Controllers
             await _context.SaveChangesAsync();
             return Ok(author);
         }
-        //[HttpDelete]
-        //public async Task<IActionResult> DeleteAuthorAsync(int id)
-        //{
-        //    var author = await _context.Authors.Where(x => x.Id == id).FirstOrDefaultAsync();
-        //    // null ?
-            
-        //}
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOneAuthorAsync(int id)
+        {
+            var author = await _context.Authors.Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+            _context.Authors.Remove(author);
+            await _context.SaveChangesAsync();
+            return Ok(author);
+        }
 
     }
 }

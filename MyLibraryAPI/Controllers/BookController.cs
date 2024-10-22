@@ -51,5 +51,13 @@ namespace MyLibraryAPI.Controllers
             return Ok(book);
 
         }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteOneBookAsync(int id)
+        {
+            var book = await _context.Books.Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
+            _context.Books.Remove(book);
+            await _context.SaveChangesAsync();
+            return Ok(book);
+        }
     }
 }
