@@ -7,7 +7,7 @@ namespace LibraryAPI.Repository
     public class LibraryDbContext : DbContext
     {
         // The LibraryDbContext class must expose a public constructor with a
-        // DbContextOptions<LibraryDbContext> parameter. This is how context
+        // DbContextOptions parameter. This is how context
         // configuration from AddDbContext is passed to the DbContext.
 
         // LibraryDbContext can then be used in ASP.NET Core controllers

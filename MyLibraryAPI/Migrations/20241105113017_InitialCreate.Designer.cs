@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MyLibraryAPI.Migrations
 {
     [DbContext(typeof(LibraryDbContext))]
-    [Migration("20240923104518_InitialCreate")]
+    [Migration("20241105113017_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,7 +24,7 @@ namespace MyLibraryAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LibraryAPI.Models.Authors", b =>
+            modelBuilder.Entity("LibraryAPI.Models.Author", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -59,7 +59,7 @@ namespace MyLibraryAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("LibraryAPI.Models.Books", b =>
+            modelBuilder.Entity("LibraryAPI.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -122,7 +122,7 @@ namespace MyLibraryAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("LibraryAPI.Models.Publishers", b =>
+            modelBuilder.Entity("LibraryAPI.Models.Publisher", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,15 +156,15 @@ namespace MyLibraryAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("LibraryAPI.Models.Books", b =>
+            modelBuilder.Entity("LibraryAPI.Models.Book", b =>
                 {
-                    b.HasOne("LibraryAPI.Models.Authors", "Authors")
+                    b.HasOne("LibraryAPI.Models.Author", "Authors")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("LibraryAPI.Models.Publishers", "Publishers")
+                    b.HasOne("LibraryAPI.Models.Publisher", "Publishers")
                         .WithMany("Books")
                         .HasForeignKey("PublisherId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -175,12 +175,12 @@ namespace MyLibraryAPI.Migrations
                     b.Navigation("Publishers");
                 });
 
-            modelBuilder.Entity("LibraryAPI.Models.Authors", b =>
+            modelBuilder.Entity("LibraryAPI.Models.Author", b =>
                 {
                     b.Navigation("Books");
                 });
 
-            modelBuilder.Entity("LibraryAPI.Models.Publishers", b =>
+            modelBuilder.Entity("LibraryAPI.Models.Publisher", b =>
                 {
                     b.Navigation("Books");
                 });
