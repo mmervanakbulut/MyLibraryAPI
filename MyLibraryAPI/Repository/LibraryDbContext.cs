@@ -42,6 +42,7 @@ namespace LibraryAPI.Repository
                 .HasForeignKey(e => e.AuthorId)
                 .IsRequired();
 
+            // Automatically implements all IEntityTypeConfiguration classes in the same project.
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
 
